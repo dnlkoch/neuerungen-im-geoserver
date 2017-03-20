@@ -70,6 +70,10 @@
   font-size: 12px;
 }
 
+.reveal section caption.small {
+  font-size: 12px;
+}
+
 reveal table.noborder th, .reveal table.noborder td {
   border-bottom: unset;
 }
@@ -80,7 +84,6 @@ reveal table.noborder th, .reveal table.noborder td {
 
 .reveal section li {
   font-size: 0.85em;
-
 }
 
 .reveal section li.small {
