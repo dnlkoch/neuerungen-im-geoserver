@@ -1,0 +1,89 @@
+.reveal section .section-container-left {
+  width: 480px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  float: left;
+}
+
+.reveal section .section-container-right {
+  width: 480px;
+  /*padding: 0 0 0 300px;*/
+  float: right;
+}
+
+.reveal section .text-container-right {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+}
+
+.reveal section code {
+  padding: 20px !important;
+}
+
+.reveal section a.email,
+.reveal section a.github,
+.reveal section a.twitter,
+.reveal section a.further-info {
+  display: inline;
+  padding-left: 1.2em;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  /* background-size: contain; */
+  background-size: 1.0em;
+}
+
+.reveal section a.email {
+  background-image: url("../img/mail-logo.png");
+}
+
+.reveal section a.github {
+  background-image: url("../img/github-logo.png");
+}
+
+.reveal section a.twitter {
+  background-image: url("../img/twitter-logo.png");
+}
+
+.reveal section a.further-info {
+  background-image: url("../img/info-logo.png");
+}
+
+.reveal section img.plain {
+  background: none;
+  border: none;
+  box-shadow: none;
+  border-radius: 15px;
+}
+
+.reveal section img.plain {
+  background: none;
+  border: none;
+  box-shadow: none;
+  border-radius: 15px;
+}
+
+.reveal section figcaption.small {
+  font-size: 12px;
+}
+
+reveal table.noborder th, .reveal table.noborder td {
+  border-bottom: unset;
+}
+
+.reveal section h3 a {
+  font-size: 14px;
+}
+
+.reveal section li {
+  font-size: 0.85em;
+
+}
+
+.reveal section li.small {
+  font-size: 0.5em;
+
+}

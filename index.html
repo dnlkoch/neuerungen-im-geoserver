@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>GeoServer: Status, neue Features und Erweiterungen</title>
+    <meta name="description" content="GeoServer 2.10/2.11: Status, neue Features und Erweiterungen" />
+
+    <!--[if lt IE 9]>
+    <script src="./reveal.js-3.4.1/lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="./reveal.js-3.4.1/css/reveal.css" />
+    <link rel="stylesheet" href="./reveal.js-3.4.1/css/theme/solarized.css" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./css/style.css" />
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="./reveal.js-3.4.1/lib/css/zenburn.css" />
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ?
+        './reveal.js-3.4.1/css/print/pdf.css' :
+        './reveal.js-3.4.1/css/print/paper.css';
+      document.getElementsByTagName('head')[0].appendChild( link );
+    </script>
+
+  </head>
+  <body>
+
+<!-- BEGIN OF SLIDES -->
+
+  <div class="reveal">
+    <div class="slides">
+
+      <section id="start">
+        <img src="./img/geoserver-logo.png" class="plain" width="400">
+        <h3>Status, neue Features und Erweiterungen</h3>
+        <p>
+          <span style="font-size: small;">Daniel Koch</span><br/>
+          <span style="font-size: small;">FOSSGIS 2017 Passau 22.-25. März 2017</span>
+        </p>
+      </section>
+
+      <!-- About -->
+      <section id="about">
+        <h2>About</h2>
+
+        <!-- About DK -->
+        <section id="about-dk">
+          <div class="section-container-left">
+            <img src="./img/ma_dk.jpg" class="plain" width="250">
+            <br/>
+            Daniel Koch
+            <br/>
+            <small>
+              <a class="email" href="mailto:koch@terrestris.de">koch@terrestris.de</a><br/>
+              <a class="github" href="https://github.com/dnlkoch">github.com/dnlkoch</a>
+            </small>
+          </div>
+          <div class="section-container-right">
+            <ul>
+              <li>Java (Spring, Hibernate)</li>
+              <li>Webtechnologien</li>
+              <li>Entwickler bei <a href="https://www.terrestris.de">terrestris</a></li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- About terrestris -->
+        <section id="about-terrestris">
+          <div class="section-container-left">
+            <img src="./img/terrestris-logo.png" class="plain" width="250">
+            <br/>
+            <small><a href="https://www.terrestris.de/">terrestris GmbH &amp; Co. KG</a></small>
+            <br/>
+            <small><a class="twitter" href="https://twitter.com/terrestrisde/">@terrestrisde</a>
+              <br /><a class="github" href="https://github.com/terrestris">github.com/terrestris</a></small>
+          </div>
+          <div class="section-container-right">
+            <ul>
+              <li>OpenSource GIS aus Bonn</li>
+              <li>Projekte, Support &amp; Schulung</li>
+              <li>Beratung &amp; Planung</li>
+              <li>Implementierung &amp; Wartung</li>
+            </ul>
+          </div>
+        </section>
+
+      </section>
+
+      <!-- GeoServer -->
+      <section id="geoserver">
+        <h2>GeoServer</h2>
+
+        <!-- About Geoserver -->
+        <section id="about-geoserver">
+          <div class="section-container-left">
+            <img src="./img/geoserver-logo.png" class="plain" width="450">
+            <br/>
+            <small><a class="github" href="https://github.com/geoserver">github.com/geoserver</a></small>
+          </div>
+          <div class="section-container-right">
+            <ul>
+              <li>Java-basierter Server
+                <br/>für Geodaten</li>
+              <li>Standards des <a href="http://www.opengeospatial.org/">OGC</a>
+                <br />
+                <small>(z.B. WMS, WFS(-T), WPS)</small>
+              </li>
+              <li>flexibel und erweiterbar</li>
+              <li>gut dokumentiert (<a href="http://docs.geoserver.org/latest/user/">user</a>/<a href="http://docs.geoserver.org/latest/developer/">dev</a>)
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Geoserver GUI -->
+        <section id="geoserver-gui">
+          <div style="float:left">
+            <figure>
+              <img src="./img/geoserver-gui.png" class="plain" width="450">
+              <figcaption class="small"><a class="further-info" href="http://docs.geoserver.org/latest/en/user/webadmin/index.html#web-admin">http://docs.geoserver.org/latest/en/user/webadmin/index.html#web-admin</a></figcaption>
+            </figure>
+          </div>
+          <div class="text-container-right" style="margin-left:18em;">
+            <ul>
+              <li>Konfiguration über Browser</li>
+              <li>OGC-Dienste</li>
+              <li>Monitoring
+                <br/>
+                <small>(Serverstatus, Logs)</small>
+              </li>
+              <li>erweiterte Features
+                <br/>
+                <small>(z.B. GeoWebCache)</small>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Geoserver release cycle -->
+        <section id="geoserver-release-cycle">
+          <h4>Release-Zyklus</h4>
+          <div style="float:left">
+            <figure>
+              <img src="./img/geoserver-release-cycle.png" class="plain" width="450">
+              <figcaption class="small"><a class="further-info" href="http://docs.geoserver.org/latest/en/developer/policies/community-process.html">http://docs.geoserver.org/latest/en/developer/policies/community-process.html</a></figcaption>
+            </figure>
+            <br/>
+          </div>
+          <div class="text-container-right" style="margin-left:18em;">
+            <ul>
+              <!--
+                Allgemein:
+
+                - Code Sprint REST
+                - Java 8 Voraussetzung (seit 2.9.x)
+                - Update to Spring 4
+
+              -->
+              <li>Maintenance</li>
+              <ul>
+                <li class="small">Aktuell: <i>2.9.4</i> (2.9.0 veröffentlicht 27.05.2016)</li>
+              </ul>
+              <!--
+              http://blog.geoserver.org/2016/08/05/geoserver-2-9-1-released/
+
+              -->
+              <li>Stable</li>
+              <ul>
+                <li class="small">Aktuell: <i>2.10.2</i> (2.10.0 veröffentlicht 26.10.2016)</li>
+              </ul>
+              <!--
+              http://blog.geoserver.org/2016/08/15/geoserver-2-10-m0-released/
+                Style Page CHECK
+                image/vnd.jpeg-png Format CHECK
+                VectorTiles CHECK
+                GetLegendGraphic layout control CHECK
+
+                Easier setup for complex features with Hale
+                WMTS config page CHECK
+
+                Resource browser community module
+                Backup/restore community module CHECK
+              -->
+              <li>Development</li>
+              <ul>
+                <li class="small">Aktuell: <i>2.11-RC1</i> (2.11.0 voraussichtlich 22.03.2017, <b>HEUTE!</b>)</li>
+              </ul>
+              <!--
+                Highlighten?
+
+                YSLD module
+                Layer Group Security
+                Improved loading and OGC request times for large installations
+                Improved lookup of EPSG codes
+
+                Corrected default AnchorPoint for LabelPlacement
+              -->
+            </ul>
+          </div>
+
+          <!-- <br />
+          <h4>Release-Zyklus</h4>
+          <img src="./img/geoserver-release-cycle.png" class="plain">
+          <small>Quelle:
+            <br/><a href="http://docs.geoserver.org/latest/en/developer/policies/community-process.html">http://docs.geoserver.org/latest/en/developer/policies/community-process.html</a>
+          </small> -->
+
+        </section>
+
+        <section>
+            <!-- Lazy loading via data-src -->
+            <iframe height="450" width="100%" data-src="http://geoserver.org/"></iframe>
+        </section>
+
+      </section>
+
+      <!-- New Features -->
+      <!-- <section id="new-features">
+          <h2>Neue Features</h2>
+      </section> -->
+
+      <!-- Styling -->
+      <section id="styling">
+        <section>
+          <h1>Styling</h1>
+        </section>
+
+        <section>
+          <h3>Stileditor (2.10) <a href="https://osgeo-org.atlassian.net/browse/GEOS-7674">[GEOS-7674]</a></h3>
+
+          <ul>
+            <li>Neues Oberfläche</li>
+            <li>Unterstützung für SLD, CSS, YSLD</li>
+            <li>Einbinden eigener Legendengrafik</li>
+          </ul>
+          <small>Weitere Informationen:
+            <br/><a href="http://docs.geoserver.org/latest/en/user/styling/webadmin/index.html#style-editor">http://docs.geoserver.org/latest/en/user/styling/webadmin/index.html#style-editor</a>
+          </small>
+        </section>
+
+        <section>
+          <h3>Stileditor (2.10) <a href="https://osgeo-org.atlassian.net/browse/GEOS-7674">[GEOS-7674]</a></h3>
+          <img src="./img/geoserver-style-ui-1.png" class="plain" width="450">
+        </section>
+        <section>
+          <h3>Stileditor (2.10) <a href="https://osgeo-org.atlassian.net/browse/GEOS-7674">[GEOS-7674]</a></h3>
+          <img src="./img/geoserver-style-ui-2.png" class="plain" width="450">
+        </section>
+        <section>
+          <h3>Stileditor (2.10) <a href="https://osgeo-org.atlassian.net/browse/GEOS-7674">[GEOS-7674]</a></h3>
+          <img src="./img/geoserver-style-ui-3.png" class="plain" width="450">
+        </section>
+        <section>
+          <h3>Stileditor (2.10) <a href="https://osgeo-org.atlassian.net/browse/GEOS-7674">[GEOS-7674]</a></h3>
+          <img src="./img/geoserver-style-ui-4.png" class="plain" width="450">
+        </section>
+
+        <section>
+          <h3>YSLD Extension (offizielle Erweiterung seit 2.11)</h3>
+          <pre><code class="yaml" data-trim>
+            name: style_example
+            title: An example of YSLD styling
+            abstract: Used in the User Manual of GeoServer
+            feature-styles:
+            - rules:
+              - name: all
+                title: Every feature will be styled this way
+                symbolizers:
+                - polygon:
+                    fill-color: '#808080'
+                    fill-opacity: 0.5
+                    stroke-color: '#000000'
+                    stroke-opacity: 0.75
+          </code></pre>
+          <small>Weitere Informationen:
+            <br/><a href="http://docs.geoserver.org/latest/en/user/styling/ysld/reference/structure.html">http://docs.geoserver.org/latest/en/user/styling/ysld/reference/structure.html</a>
+          </small>
+        </section>
+
+        <section>
+          <h3>CSS Extension/community module</h3>
+          <pre><code class="yaml" data-trim>
+            TODO
+          </code></pre>
+          <small>Weitere Informationen:
+            <br/><a href="http://docs.geoserver.org/latest/en/user/styling/ysld/reference/structure.html">http://docs.geoserver.org/latest/en/user/styling/ysld/reference/structure.html</a>
+          </small>
+        </section>
+
+        <section>
+          <h3>Sonstige</h3>
+          <code class="xml">&lt;VendorOption name="underlineText"&gt;true&lt;/VendorOption&gt;</code>
+          <img src="./img/geoserver-underlying-label.png" class="plain" width="350">
+          <ul>
+            <li>Underline label <a href="https://osgeo-org.atlassian.net/browse/GEOS-7662">[GEOS-7662]</a></li>
+          </ul>
+        </section>
+
+      </section>
+
+      <!-- WMS -->
+      <section>
+
+        <section>
+          <h1>WMS</h1>
+        </section>
+
+        <section>
+          <h3>Dynamisches Bildformat (2.10) <a href="https://osgeo-org.atlassian.net/browse/GEOS-7603">[GEOS-7603]</a></h3>
+          <div style="float:left">
+            <figure>
+              <img src="./img/geoserver-jpeg-png.png" class="plain" width="450">
+              <figcaption class="small"><a class="further-info" href="http://www.geo-solutions.it/blog/geoserver-smart-transparency/">http://www.geo-solutions.it/blog/geoserver-smart-transparency/</a></figcaption>
+            </figure>
+            <br/>
+          </div>
+          <div class="text-container-right" style="margin-left:18em;">
+            <ul>
+              <li>Format <code>image/vnd.jpeg-png</code></li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Vector tiles -->
+        <section>
+          <h3>Vectortiles Extension (offizielle Erweiterung seit 2.11) KEIN GEOS?!</h3>
+          <div style="float:left">
+            <figure>
+              <img src="./img/geoserver-vector-tiles-africa.png" class="plain" width="450">
+              <figcaption class="small"><a class="further-info" href="http://docs.geoserver.org/latest/en/user/extensions/vectortiles/index.html">http://docs.geoserver.org/latest/en/user/extensions/vectortiles/index.html</a></figcaption>
+            </figure>
+            <br/>
+          </div>
+          <div class="text-container-right" style="margin-left:18em;">
+            <ul>
+              <li>Ausgabeformate</li>
+              <ul>
+                <li><code>application/json;type=geojson</code></li>
+                <li><code>application/json;type=topojson</code></li>
+                <li><code>application/x-protobuf;type=mapbox-vector</code></li>
+              </ul>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <h3>Vectortiles</h3>
+           <img src="./img/geoserver-vector-tiles-wms-tiled.png" class="plain" width="450">
+           &nbsp;&nbsp;&nbsp;&nbsp;
+           <img src="./img/geoserver-vector-tiles-vector-tiled.png" class="plain" width="450">
+        </section>
+
+        <section>
+          <h3>Vectortiles</h3>
+           <img src="./img/geoserver-vector-tiles-wms-single.png" class="plain" width="450">
+           &nbsp;&nbsp;&nbsp;&nbsp;
+           <img src="./img/geoserver-vector-tiles-vector-single.png" class="plain" width="450">
+        </section>
+
+        <section>
+          <h3>WMS GetLegendGraphic Layout <a href="https://osgeo-org.atlassian.net/browse/GEOS-7573">[GEOS-7573]</a></h3>
+          <section>
+
+            <ul>
+              <li>Parameter <code>LEGEND_OPTIONS</code></li>
+            </ul>
+
+            <table class="noborder">
+              <tr>
+                <td>
+                  <figure>
+                    <img src="./img/geoserver-legend-format-horizontal.png" class="plain" height="20">
+                    <figcaption class="small">LEGEND_OPTIONS=layout:horizontal</figcaption>
+                  </figure>
+                </td>
+                <td align="right">
+                  <figure>
+                    <img src="./img/geoserver-legend-format-vertical.png" class="plain" height="80">
+                    <figcaption class="small">LEGEND_OPTIONS=layout:vertical</figcaption>
+                  </figure>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <figure>
+                    <img src="./img/geoserver-legend-format-horizontal-rows-2.png" class="plain" height="40">
+                    <figcaption class="small">LEGEND_OPTIONS=layout:horizontal;rows:2</figcaption>
+                  </figure>
+                </td>
+                <td align="right">
+                  <figure>
+                    <img src="./img/geoserver-legend-format-vertical-columns-2.png" class="plain" height="40">
+                    <figcaption class="small">LEGEND_OPTIONS=layout:vertical;columns:2</figcaption>
+                  </figure>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <figure>
+                    <img src="./img/geoserver-legend-format-horizontal-rows-2-width-150.png" class="plain" height="40">
+                    <figcaption class="small">LEGEND_OPTIONS=layout:horizontal;rows:2;rowwidth:150</figcaption>
+                  </figure>
+                </td>
+                <td align="right">
+                  <figure>
+                    <img src="./img/geoserver-legend-format-vertical-columns-2-height-60.png" class="plain" height="60">
+                    <figcaption class="small">LEGEND_OPTIONS=layout:vertical;columns:2;columnheight:60</figcaption>
+                  </figure>
+                </td>
+              </tr>
+            </table>
+
+          </section>
+          <!-- http://localhost:8080/geoserver/topp/wms?service=WMS&version=1.1.0&request=GetLegendGraphic&layer=topp:states&FORMAT=image/png&WIDTH=25&HEIGHT=25&LEGEND_OPTIONS=layout:horizontal -->
+        </section>
+
+        <section>
+          <h3>WMTS GUI Page</h3>
+          <div style="float:left">
+            <figure>
+              <img src="./img/geoserver-wmts-ui.png" class="plain" width="450">
+              <figcaption class="small"><a class="further-info" href="http://docs.geoserver.org/latest/en/user/extensions/vectortiles/index.html">http://docs.geoserver.org/latest/en/user/extensions/vectortiles/index.html</a></figcaption>
+            </figure>
+            <br/>
+          </div>
+          <div class="text-container-right" style="margin-left:18em;">
+            <ul>
+              <li>Ausgabeformate</li>
+            </ul>
+          </div>
+        </section>
+
+      </section>
+
+      <!-- WFS -->
+      <section>
+        <section>
+          <h1>WFS</h1>
+        </section>
+
+        <section>
+          <h3>Hale</h3>
+        </section>
+      </section>
+
+      <!-- Security -->
+      <section id="security">
+        <section>
+          <h1>Security</h1>
+        </section>
+
+        <section>
+          <h3>LDAP Benutzergruppendienst</h3>
+          <div style="float:left">
+            <figure>
+              <img src="./img/geoserver-ldap-user-group-service-ui.png" class="plain" width="400">
+              <figcaption class="small"><a class="further-info" href="http://docs.geoserver.org/latest/en/user/extensions/vectortiles/index.html">http://docs.geoserver.org/latest/en/user/extensions/vectortiles/index.html</a></figcaption>
+            </figure>
+            <br/>
+          </div>
+          <div class="text-container-right" style="margin-left:18em;">
+            <ul>
+              <li>Zuvor limitiert auf authentication provider</li>
+              <li>Auslesen der GeoServer Nutzer aus einem LDAP</li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <h3>Layer Group Security</h3>
+          <div style="float:left">
+            <figure>
+              <img src="./img/geoserver-ldap-user-group-service-ui.png" class="plain" width="450">
+              <figcaption class="small"><a class="further-info" href="hhttp://docs.geoserver.org/latest/en/user/security/layer.html#security-by-layer-group-in-wms">http://docs.geoserver.org/latest/en/user/security/layer.html#security-by-layer-group-in-wms</a></figcaption>
+            </figure>
+            <br/>
+          </div>
+          <div class="text-container-right" style="margin-left:18em;">
+            <ul>
+              <li>Zuvor limitiert auf authentication provider</li>
+              <li>Auslesen der GeoServer Nutzer aus einem LDAP</li>
+            </ul>
+          </div>
+        </section>
+
+      </section>
+
+      <!-- Sonstiges -->
+      <section>
+
+        <section>
+          <h1>Sonstige</h1>
+        </section>
+
+        <section>
+          <h3>Backup and Restore</h3>
+          <div style="float:left">
+            <figure>
+              <img src="./img/geoserver-community-backup-restore-gui.png" class="plain" width="400">
+              <figcaption class="small"><a class="further-info" href="http://docs.geoserver.org/latest/en/user/community/backuprestore/index.html">http://docs.geoserver.org/latest/en/user/community/backuprestore/index.html</a></figcaption>
+            </figure>
+            <br/>
+          </div>
+          <div class="text-container-right" style="margin-left:18em;">
+            <ul>
+              <li>Community module</li>
+              <li>Modul zum einfachen Sichern & Wiederherstellen der GeoServer Konfiguration</li>
+              <li>GUI und REST API verfügbar</li>
+              <li>Parametrisierung der Konfiguration (z.B. Passwörter auf Staging und Production Server)</li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <a href="https://osgeo-org.atlassian.net/browse/GEOS-7646">Import von Shapefiles [GEOS-7646]</a>
+        </section>
+
+        <section>
+          <a href="https://osgeo-org.atlassian.net/browse/GEOS-7953">Startup Performance [GEOS-7953] (seit 2.11)</a>
+          cold start
+          <table>
+            <tr>
+              <th>Version</th>
+              <th>Dauer (in Sek.)</th>
+            </tr>
+            <tr>
+              <td>2.10.1</td>
+              <td>428</td>
+            </tr>
+            <tr>
+              <td>GSIP 155</td>
+              <td>68</td>
+            </tr>
+          </table>
+          MEME einbaune?
+        </section>
+
+        <section>
+          <h3>Memory leak in WMS GetFeatureInfo GML3 encoding <a href="https://osgeo-org.atlassian.net/browse/GEOS-7887">[GEOS-7887]</a></h3>
+        </section>
+
+      </section>
+
+      <!-- Community -->
+      <section data-background-image="./img/heart.png">
+        <img src="./img/geoserver-logo.png" class="plain" width="450">
+      </section>
+
+      <!-- Fin -->
+      <section id="fragen">
+          <h2>Fragen</h2> ???
+      </section>
+
+      <!-- Impressum -->
+      <section id="imprint">
+          <h2>Impressum</h2>
+          <div style="width: 45%; float: left; text-align: left;">
+              <h4>Autor</h4>
+              <address>
+                  <strong>Daniel Koch</strong><br />
+                  <span style="font-size: smaller;">
+                      terrestris GmbH &amp; Co. KG<br />
+                      Kölnstr. 99<br />
+                      53111 Bonn<br />
+                      koch@terrestris.de
+                  </span>
+              </address>
+          </div>
+          <div style="width: 45%; float: right;  text-align: right;">
+              <h4>Lizenz</h4>
+              <p id="license">
+                  Diese Folien sind unter <a
+                  href="http://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA</a>
+                  veröffentlicht.
+              </p>
+              <p>
+                  <a href="https://rawgit.com/dnlkoch/neuerungen-im-geoserver/master/index.html">Vortragsfolien</a>,
+                  <a href="https://rawgit.com/dnlkoch/neuerungen-im-geoserver/master/Neuerungen%20im%20GeoServer.pdf">PDF-Version</a>,
+                  <a href="https://github.com/dnlkoch/neuerungen-im-geoserver">git repository</a>
+              </p>
+          </div>
+
+          <div style="clear:both; margin-top: 1em;">
+              <h4>Bildquellen</h4>
+              <p style="font-size: 0.6em;">
+                  checkmark.svg: https://commons.wikimedia.org/wiki/File:Checkmark.svg, Public Domain
+              </p>
+              <p style="font-size: 0.6em;">Andere Quellen siehe jeweilige Folie</p>
+          </div>
+      </section>
+
+    </div>
+  </div>
+
+
+<!-- END OF SLIDES -->
+
+
+    <script src="./reveal.js-3.4.1/lib/js/head.min.js"></script>
+    <script src="./reveal.js-3.4.1/js/reveal.js"></script>
+    <script>
+(function () {
+  var revealPath = './reveal.js-3.4.1/';
+  // More info https://github.com/hakimel/reveal.js#configuration
+  Reveal.initialize({
+    history: true,
+    controls: true,
+    progress: true,
+    center: true,
+    slideNumber: false,
+    keyboard: true,
+    overview: true,
+    loop: false,
+    backgroundTransition: 'zoom',
+
+    // More info https://github.com/hakimel/reveal.js#dependencies
+    dependencies: [{
+        src: revealPath + 'plugin/markdown/marked.js'
+      }, {
+        src: revealPath + 'plugin/markdown/markdown.js'
+      }, {
+        src: revealPath + 'plugin/notes/notes.js',
+        async: true
+      }, {
+        src: revealPath + 'plugin/highlight/highlight.js',
+        async: true,
+        callback: function() {
+          hljs.initHighlightingOnLoad();
+        }
+      }
+    ]
+  });
+}());
+    </script>
+  </body>
+</html>
